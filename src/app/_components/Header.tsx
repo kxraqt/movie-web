@@ -6,7 +6,16 @@ import { Moon, Sun, ChevronDown, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import Link from "next/link";
 import { Film } from "lucide-react";
+import {
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+} from "@radix-ui/react-navigation-menu";
 
 const Header = () => {
   const { setTheme, resolvedTheme } = useTheme();
@@ -98,21 +107,32 @@ const Header = () => {
           <Button
             className="  text-black rounded-md py-2 px-3 flex items-center space-x-2"
             onClick={toggleGenreDropdown}
+            variant="outline"
           >
             <span>{selectedGenre}</span>
             <ChevronDown className="w-4 h-4" />
           </Button>
           {isGenreOpen && (
             <div className="absolute top-full left-0 rounded-md shadow-md mt-1 w-32 z-10">
-              {genres.map((genre) => (
-                <button
-                  key={genre}
-                  onClick={() => handleGenreSelect(genre)}
-                  className="block py-2 px-4 text-sm w-full text-left text-black dark:text-white hover:bg-gray-700 focus:outline-none"
-                >
-                  {genre}
-                </button>
-              ))}
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <Link href="/docs" legacyBehavior passHref>
+                      <NavigationMenuLink className="">
+                        {genres.map((genre) => (
+                          <button
+                            key={genre}
+                            onClick={() => handleGenreSelect(genre)}
+                            className="block py-2 px-4 text-sm w-full text-left text-black dark:text-white focus:outline-none"
+                          >
+                            {genre}
+                          </button>
+                        ))}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
             </div>
           )}
         </div>
@@ -125,7 +145,7 @@ const Header = () => {
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             ref={searchInputRef}
-            className=" text-whiterounded-md py-2 pl-10 pr-3 focus:outline-none focus:ring-blue-500"
+            className="  py-2 pl-10 pr-3 text-blackfocus:outline-none focus:ring-blue-500"
           />
         </div>
       </div>

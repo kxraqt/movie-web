@@ -3,12 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 
-type Props = {
+type Movie = {
+  id: number;
   title: string;
-  movies: any;
+  poster_path: string;
+  vote_average: number;
 };
 
-export const Movies = ({ title, movies }: Props) => {
+type Props = {
+  title: string;
+  movies: {
+    results: Movie[];
+  };
+};
+
+const Movies = ({ title, movies }: Props) => {
   console.log(movies, "movies");
 
   return (
@@ -40,3 +49,5 @@ export const Movies = ({ title, movies }: Props) => {
     </section>
   );
 };
+
+export default Movies;
