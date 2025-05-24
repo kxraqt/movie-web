@@ -19,7 +19,6 @@ type Props = {
 
 const Movies = ({ title, movies }: Props) => {
   console.log(movies, "movies");
-
   return (
     <section className="w-full px-4 md:px-6 lg-px-8 py-8">
       <h2 className="text-xl md:text-2xl font-bold mb-6">{title}</h2>

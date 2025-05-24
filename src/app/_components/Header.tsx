@@ -21,17 +21,6 @@ const Header = () => {
   const { setTheme, resolvedTheme } = useTheme();
   const isDarkThemeActive = resolvedTheme === "dark";
   const toggleTheme = () => setTheme(isDarkThemeActive ? "light" : "dark");
-  <Button
-    size="icon"
-    onClick={toggleTheme}
-    className="ml-4 hover:bg-gray-700 text-white"
-  >
-    {isDarkThemeActive ? (
-      <Sun className="text-black" />
-    ) : (
-      <Moon className="text-white" />
-    )}
-  </Button>;
 
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef(null);
@@ -145,17 +134,47 @@ const Header = () => {
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             ref={searchInputRef}
-            className="  py-2 pl-10 pr-3 text-blackfocus:outline-none focus:ring-blue-500"
+            className="  py-2 pl-10 pr-3 text-black text-blackfocus:outline-none focus:ring-blue-500"
           />
         </div>
       </div>
 
-      <Button size="icon" onClick={toggleTheme} className="ml-4  text-white">
-        {isDarkThemeActive ? (
-          <Sun className="text-white" />
-        ) : (
-          <Moon className="text-white" />
-        )}
+      {/* THIS IS THE CORRECTLY PLACED THEME TOGGLE BUTTON */}
+      <Button
+        size="icon"
+        onClick={toggleTheme}
+        className="ml-4 hover:bg-gray-700 text-white theme-toggle"
+        type="button"
+        title="Toggle theme"
+        aria-label="Toggle theme"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          width="1em"
+          height="1em"
+          fill="currentColor"
+          strokeLinecap="round"
+          className="theme-toggle__classic"
+          viewBox="0 0 32 32"
+        >
+          <clipPath id="theme-toggle__classic__cutout">
+            <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z" />
+          </clipPath>
+          <g clipPath="url(#theme-toggle__classic__cutout)">
+            <circle cx="16" cy="16" r="9.34" />
+            <g stroke="currentColor" strokeWidth="1.5">
+              <path d="M16 5.5v-4" />
+              <path d="M16 30.5v-4" />
+              <path d="M1.5 16h4" />
+              <path d="M26.5 16h4" />
+              <path d="m23.4 8.6 2.8-2.8" />
+              <path d="m5.7 26.3 2.9-2.9" />
+              <path d="m5.8 5.8 2.8 2.8" />
+              <path d="m23.4 23.4 2.9 2.9" />
+            </g>
+          </g>
+        </svg>
       </Button>
     </header>
   );
